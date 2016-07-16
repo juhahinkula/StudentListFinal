@@ -1,32 +1,19 @@
 package fi.haagahelia.course.model;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.*;
 
 @Entity
 public class Student {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
-    @Column(name = "firstname")    
-	private String firstName;
-	
-    @Column(name = "lastname")
+	private long id;	 
+	private String firstName;	
 	private String lastName;
-	
-    @Column(name = "department")
-	private String department;
-    
-    @Column(name = "email")
+	private String department;    
     private String email;    
+    
+	private Set<Course> courses = new HashSet<Course>(0);    
     
     public Student() {
     }
@@ -39,6 +26,8 @@ public class Student {
 		this.email = email;
 	}
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)	
 	public long getId() {
 		return id;
 	}
@@ -47,6 +36,7 @@ public class Student {
 		this.id = id;
 	}
 
+    @Column(name = "firstname")   	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -55,6 +45,7 @@ public class Student {
 		this.firstName = firstName;
 	}
 
+    @Column(name = "lastname")	
 	public String getLastName() {
 		return lastName;
 	}
@@ -63,6 +54,7 @@ public class Student {
 		this.lastName = lastName;
 	}
 
+    @Column(name = "department")
 	public String getDepartment() {
 		return department;
 	}
@@ -71,11 +63,31 @@ public class Student {
 		this.department = department;
 	}
 
+    @Column(name = "email")	
     public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}	
+
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name = "student_course", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "courseid") })
+	public Set<Course> getCourses() {
+		return this.courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+	
+	public boolean hasCourse(Course course) {
+		for (Course studentCourse: getCourses()) {
+			if (studentCourse.getCourseid() == course.getCourseid()) {
+				return true;
+			}
+		}
+		return false;
 	}	
 }
