@@ -1,4 +1,4 @@
-package fi.haagahelia.course.controller;
+package fi.haagahelia.course.web;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fi.haagahelia.course.model.Course;
-import fi.haagahelia.course.model.Student;
-import fi.haagahelia.course.repository.CourseRepository;
-import fi.haagahelia.course.repository.StudentRepository;
+import fi.haagahelia.course.domain.Course;
+import fi.haagahelia.course.domain.CourseRepository;
+import fi.haagahelia.course.domain.Student;
+import fi.haagahelia.course.domain.StudentRepository;
 
 @Controller
 public class StudentController {

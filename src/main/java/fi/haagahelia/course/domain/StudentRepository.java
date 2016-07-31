@@ -1,7 +1,6 @@
-package fi.haagahelia.course.repository;
+package fi.haagahelia.course.domain;
 
 import java.util.List;
-import fi.haagahelia.course.model.Student;
 
 import org.springframework.data.repository.CrudRepository;
 

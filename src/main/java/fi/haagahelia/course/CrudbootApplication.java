@@ -11,10 +11,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import fi.haagahelia.course.model.Course;
-import fi.haagahelia.course.model.Student;
-import fi.haagahelia.course.repository.StudentRepository;
-import fi.haagahelia.course.repository.CourseRepository;
+import fi.haagahelia.course.domain.Course;
+import fi.haagahelia.course.domain.CourseRepository;
+import fi.haagahelia.course.domain.Student;
+import fi.haagahelia.course.domain.StudentRepository;
+import fi.haagahelia.course.domain.User;
+import fi.haagahelia.course.domain.UserRepository;
 
 @SpringBootApplication
 public class CrudbootApplication {
@@ -26,12 +28,12 @@ public class CrudbootApplication {
 	}
 	
 	/**
-	 * Save students to H2 DB for testing
+	 * Save students and courses to H2 DB for testing
 	 * @param repository
 	 * @return
 	 */
 	@Bean
-	public CommandLineRunner demo(StudentRepository repository, CourseRepository crepository) {
+	public CommandLineRunner demo(StudentRepository repository, CourseRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			// save students
 			Student student1 = new Student("John", "Johnson", "IT", "john@john.com"); 
@@ -54,6 +56,10 @@ public class CrudbootApplication {
 			
 			student1.setCourses(courses); 
 			repository.save(student1);
+
+			// Create user with BCrypt encoded password
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			urepository.save(user1);
 		};
 	}
 }

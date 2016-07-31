@@ -1,4 +1,4 @@
-package fi.haagahelia.course.model;
+package fi.haagahelia.course.domain;
 
 import java.util.HashSet;
 import java.util.Set;
