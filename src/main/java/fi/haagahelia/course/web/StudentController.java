@@ -49,7 +49,7 @@ public class StudentController {
     }
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String editRemoveEmployee(@PathVariable("id") Long studentId, Model model) {
+    public String deleteStudent(@PathVariable("id") Long studentId, Model model) {
     	repository.delete(studentId);
         return "redirect:/students";
     }    
