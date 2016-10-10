@@ -12,4 +12,8 @@ Usage (with eclipse):
 3.) Run
 4.) Navigate to localhost:8080
 
+Application has two demo users: 
+user/user (role=USER) and
+admin/admin (role=ADMIN)
+
 
