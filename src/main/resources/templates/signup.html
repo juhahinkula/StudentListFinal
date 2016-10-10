@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add student</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Sign-up</h1>
+	<div class="col-md-4">
+		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+			<table>
+			<tr><td>
+			<input type="text" th:field="*{username}" class="form-control"
+				placeholder="Username" />
+			</td><td>
+			<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>	
+			</td></tr>
+			<tr><td>
+			<input type="password" th:field="*{password}" class="form-control"
+				placeholder="Password" />
+			</td><td>
+			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>	
+			</td></tr>
+			<tr><td>
+			<input type="password" th:field="*{passwordCheck}" class="form-control"
+				placeholder="Re-type Password" />
+			</td></tr>
+			</table>
+			
+			<input type="submit" class="btn btn-success" value="Save"></input>		
+		</form>
+	</div>
+</body>
+</html>

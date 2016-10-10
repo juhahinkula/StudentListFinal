@@ -22,7 +22,7 @@ public class StudentController {
     private StudentRepository repository; 
 
 	@Autowired
-    private CourseRepository crepository; 	
+    private CourseRepository crepository; 		
 	
 	@RequestMapping("/login")
 	public String login() {
