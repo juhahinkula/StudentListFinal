@@ -40,8 +40,13 @@ public class UserController {
 		    	newUser.setPasswordHash(hashPwd);
 		    	newUser.setUsername(signupForm.getUsername());
 		    	newUser.setRole("USER");
-		    	
-		    	repository.save(newUser);
+		    	if (repository.findByUsername(signupForm.getUsername()) == null) {
+		    		repository.save(newUser);
+		    	}
+		    	else {
+	    			bindingResult.rejectValue("username", "error.userexists", "Username already exists");    	
+	    			return "signup";		    		
+		    	}
     		}
     		else {
     			bindingResult.rejectValue("passwordCheck", "error.pwdmatch", "Passwords does not match");    	
