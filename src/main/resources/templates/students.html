@@ -40,6 +40,7 @@
     		</td>
     		<td>
     			<a th:href="@{/addStudentCourse/{id}(id=${student.id})}" class="btn btn-success btn-xs">Add Course</a>
+    			<a th:href="@{/edit/{id}(id=${student.id})}" class="btn btn-success btn-xs">Edit</a>
     			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger btn-xs">Delete</a>
     		</td>
     	</tr>

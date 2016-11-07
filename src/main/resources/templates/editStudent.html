@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit student</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Edit student</h1>
+	<div class="col-md-4">
+		<form th:object="${student}" th:action="@{../save}" action="#" method="post">
+			<input type="text" th:field="*{firstName}" class="form-control"
+				placeholder="Firstname" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" th:field="*{lastName}" class="form-control"
+				placeholder="Lastname" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" th:field="*{department}" class="form-control"
+				placeholder="Department" />
+			<div style="clear: both; display: block; height: 10px;"></div>	
+			<input type="text" th:field="*{email}" class="form-control"
+				placeholder="Email" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" class="btn btn-success" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

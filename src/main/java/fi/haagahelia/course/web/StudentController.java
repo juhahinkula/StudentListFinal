@@ -41,7 +41,13 @@ public class StudentController {
     	model.addAttribute("student", new Student());
         return "addStudent";
     }	
-	
+
+    @RequestMapping(value = "/edit/{id}")
+    public String editStudent(@PathVariable("id") Long studentId, Model model){
+    	model.addAttribute("student", repository.findOne(studentId));
+        return "editStudent";
+    }	    
+    
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(Student student){
         repository.save(student);
