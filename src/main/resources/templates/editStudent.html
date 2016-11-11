@@ -9,6 +9,7 @@
 	<h1>Edit student</h1>
 	<div class="col-md-4">
 		<form th:object="${student}" th:action="@{../save}" action="#" method="post">
+			<input type="hidden" th:field="*{id}" class="form-control"/>
 			<input type="text" th:field="*{firstName}" class="form-control"
 				placeholder="Firstname" />
 			<div style="clear: both; display: block; height: 10px;"></div>
