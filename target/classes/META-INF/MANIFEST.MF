@@ -3,7 +3,8 @@ Implementation-Title: crudboot
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Admin
 Implementation-Vendor-Id: fi.haagahelia.course
-Build-Jdk: 1.8.0_101
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/crudboot/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 

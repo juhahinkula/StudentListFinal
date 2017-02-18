@@ -13,7 +13,10 @@ public class Course {
     @Column(name="coursename")
 	private String name; 
      
-	public Course() {
+    @ManyToMany(mappedBy = "courses")    
+    private Set<Student> students;  
+
+    public Course() {
 	}
 
 	public Course(String name) {
@@ -32,8 +35,6 @@ public class Course {
 		this.name = name;
 	}	
     
-    @ManyToMany(mappedBy = "courses")    
-    private Set<Student> students;  
     
     public Set<Student> getStudents() {
         return students;
