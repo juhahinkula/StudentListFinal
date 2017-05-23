@@ -6,16 +6,16 @@ import org.junit.runner.*;
 import static org.junit.Assert.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import fi.haagahelia.course.domain.Student;
 import fi.haagahelia.course.domain.StudentRepository;
 import fi.haagahelia.course.domain.User;
 import fi.haagahelia.course.domain.UserRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {CrudbootApplication.class, WebSecurityConfig.class })
+@RunWith(SpringRunner.class)
+@DataJpaTest
 public class CrudbootApplicationTests {
 
 
