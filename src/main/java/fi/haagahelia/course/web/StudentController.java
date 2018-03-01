@@ -63,18 +63,19 @@ public class StudentController {
     
     @RequestMapping(value = "addStudentCourse/{id}", method = RequestMethod.GET)
     public String addCourse(@PathVariable("id") Long studentId, Model model){
-    	model.addAttribute("courses", crepository.findAll());
-		model.addAttribute("student", repository.findById(studentId).get());
-    	return "addStudentCourse";
+
+    		model.addAttribute("courses", crepository.findAll());
+    		model.addAttribute("student", repository.findById(studentId).get());
+    		return "addStudentCourse";
     }
     
     
     @RequestMapping(value="/student/{id}/courses", method=RequestMethod.GET)
-	public String studentsAddCourse(@PathVariable Long id, @RequestParam Long courseId, Model model) {
-		Optional<Course> course = crepository.findById(courseId);
+	public String studentsAddCourse(@RequestParam(value="action", required=true) String action, @PathVariable Long id, @RequestParam Long courseId, Model model) {
+    	Optional<Course> course = crepository.findById(courseId);
 		Optional<Student> student = repository.findById(id);
 
-		if (student.isPresent()) {
+		if (student.isPresent() && action.equalsIgnoreCase("save")) {
 			if (!student.get().hasCourse(course.get())) {
 				student.get().getCourses().add(course.get());
 			}
@@ -86,6 +87,7 @@ public class StudentController {
 
 		model.addAttribute("developers", repository.findAll());
 		return "redirect:/students";
+		
 	}    
     
     @RequestMapping(value = "getstudents", method = RequestMethod.GET)
