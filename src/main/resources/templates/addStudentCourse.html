@@ -6,6 +6,7 @@
 	<link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />	
 </head>
 <body>
+<div class="container">
 	<h1>Add course</h1>
 	<form th:action="@{/student/{id}/courses(id=${student.id})}" method="get" enctype="multipart/form-data" >
 	<div class="col-md-4">
@@ -32,5 +33,6 @@
 			<input type="submit" class="btn btn-primary" value="Add course"/>
 	</div>
 	</form>
+</div>
 </body>
 </html>

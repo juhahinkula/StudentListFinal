@@ -6,6 +6,7 @@
 	<link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 </head>
 <body>
+<div class="container">
 	<h1>Edit student</h1>
 	<div class="col-md-4">
 		<form th:object="${student}" th:action="@{../save}" action="#" method="post">
@@ -25,5 +26,6 @@
 			<input type="submit" class="btn btn-primary" value="Save"></input>
 		</form>
 	</div>
+</div>
 </body>
 </html>

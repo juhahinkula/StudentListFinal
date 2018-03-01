@@ -64,7 +64,7 @@ public class StudentController {
     @RequestMapping(value = "addStudentCourse/{id}", method = RequestMethod.GET)
     public String addCourse(@PathVariable("id") Long studentId, Model model){
     	model.addAttribute("courses", crepository.findAll());
-		model.addAttribute("student", repository.findById(studentId));
+		model.addAttribute("student", repository.findById(studentId).get());
     	return "addStudentCourse";
     }
     
