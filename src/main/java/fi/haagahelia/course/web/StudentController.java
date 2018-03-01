@@ -1,6 +1,7 @@
 package fi.haagahelia.course.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,7 @@ public class StudentController {
 
     @RequestMapping(value = "/edit/{id}")
     public String editStudent(@PathVariable("id") Long studentId, Model model){
-    	model.addAttribute("student", repository.findOne(studentId));
+    	model.addAttribute("student", repository.findById(studentId));
         return "editStudent";
     }	    
     
@@ -56,29 +57,29 @@ public class StudentController {
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteStudent(@PathVariable("id") Long studentId, Model model) {
-    	repository.delete(studentId);
+    	repository.deleteById(studentId);
         return "redirect:/students";
     }    
     
     @RequestMapping(value = "addStudentCourse/{id}", method = RequestMethod.GET)
     public String addCourse(@PathVariable("id") Long studentId, Model model){
     	model.addAttribute("courses", crepository.findAll());
-		model.addAttribute("student", repository.findOne(studentId));
+		model.addAttribute("student", repository.findById(studentId));
     	return "addStudentCourse";
     }
     
     
     @RequestMapping(value="/student/{id}/courses", method=RequestMethod.GET)
 	public String studentsAddCourse(@PathVariable Long id, @RequestParam Long courseId, Model model) {
-		Course course = crepository.findOne(courseId);
-		Student student = repository.findOne(id);
+		Optional<Course> course = crepository.findById(courseId);
+		Optional<Student> student = repository.findById(id);
 
-		if (student != null) {
-			if (!student.hasCourse(course)) {
-				student.getCourses().add(course);
+		if (student.isPresent()) {
+			if (!student.get().hasCourse(course.get())) {
+				student.get().getCourses().add(course.get());
 			}
-			repository.save(student);
-			model.addAttribute("student", crepository.findOne(id));
+			repository.save(student.get());
+			model.addAttribute("student", crepository.findById(id));
 			model.addAttribute("courses", crepository.findAll());
 			return "redirect:/students";
 		}

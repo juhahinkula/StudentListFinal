@@ -28,7 +28,7 @@ public class CrudbootApplication {
 	}
 	
 	/**
-	 * Save students and courses to H2 DB for testing
+	 * Save users and students to H2 DB for testing
 	 * @param repository
 	 * @return
 	 */

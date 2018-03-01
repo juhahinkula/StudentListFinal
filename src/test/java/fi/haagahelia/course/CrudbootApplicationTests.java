@@ -5,6 +5,8 @@ import org.junit.runner.*;
 
 import static org.junit.Assert.*;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -47,8 +49,8 @@ public class CrudbootApplicationTests {
 		Student student = new Student("Test", "Student", "IT", "test@test.com");
 		
 		studentRepository.save(student);
-		Student findStudent = studentRepository.findOne(student.getId());
-		assertNotNull(findStudent);
+		Optional<Student> findStudent = studentRepository.findById(student.getId());
+		assertTrue(findStudent.isPresent());
     }
     
 }
