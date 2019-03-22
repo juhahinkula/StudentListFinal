@@ -3,7 +3,7 @@ Implementation-Title: crudboot
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: h01270
 Implementation-Vendor-Id: fi.haagahelia.course
-Build-Jdk: 1.8.0_77
+Build-Jdk: 1.8.0_101
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/crudboot
 Created-By: Maven Integration for Eclipse
