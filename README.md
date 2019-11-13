@@ -2,6 +2,7 @@
 Simple CRUD application made with Spring Boot
 
 - Spring Boot
+- Spring Security
 - Thymeleaf
 - H2 database
 - Bootstrap
