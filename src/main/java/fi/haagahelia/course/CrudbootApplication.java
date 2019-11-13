@@ -2,6 +2,7 @@ package fi.haagahelia.course;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +22,12 @@ import fi.haagahelia.course.domain.UserRepository;
 @SpringBootApplication
 public class CrudbootApplication {
 	
-	private static final Logger log = LoggerFactory.getLogger(CrudbootApplication.class);
-	
 	public static void main(String[] args) {
 		SpringApplication.run(CrudbootApplication.class, args);
 	}
 	
 	/**
-	 * Save demo users and students to H2 DB
+	 * Save demo users, courses and students to H2 DB
 	 * @param repository
 	 * @return
 	 */
@@ -36,26 +35,15 @@ public class CrudbootApplication {
 	public CommandLineRunner demo(StudentRepository repository, CourseRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			// save students
-			Student student1 = new Student("John", "Johnson", "IT", "john@john.com"); 
+			repository.save(new Student("John", "Johnson", "IT", "john@john.com")); 
 			repository.save(new Student("Steve", "Stevens", "IT", "steve.stevent@st.com"));
 			repository.save(new Student("Mary", "Robinson", "IT", "mary@robinson.com"));
 			repository.save(new Student("Kate", "Keystone", "Nursery","kate@kate.com"));
 			repository.save(new Student("Diana", "Doll", "Business","diana@doll.com"));
 			
-			Course course1 = new Course("Programming Java");
-			Course course2 = new Course("Spring Boot basics");
-			crepository.save(new Course("Marketing 1"));
-			crepository.save(new Course("Marketing 2"));
-			
-			crepository.save(course1);
-			crepository.save(course2);
-			
-			Set<Course> courses = new HashSet<Course>();
-			courses.add(course1);
-			courses.add(course2);
-			
-			student1.setCourses(courses); 
-			repository.save(student1);
+			Stream.of("Programming Java", "Spring Boot basics", "Marketing 1", "Marketing 2").forEach(name -> {
+				crepository.save(new Course(name));
+			});
 
 			// Create users with BCrypt encoded password (user/user, admin/admin)
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
