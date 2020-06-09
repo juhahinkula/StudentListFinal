@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.validation.Valid;
-
 import fi.haagahelia.course.domain.SignupForm;
 import fi.haagahelia.course.domain.User;
 import fi.haagahelia.course.domain.UserRepository;
@@ -27,7 +25,7 @@ public class UserController {
     }	
     
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
+    public String save(@ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
     	System.out.println(bindingResult.toString());
     	if (!bindingResult.hasErrors()) { // validation errors
     		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match		
