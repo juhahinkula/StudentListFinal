@@ -6,8 +6,8 @@
 	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Sign-up</h1>
-	<div class="col-md-4">
+	<div class="container">
+		<h1>Sign-up</h1>
 		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
 			<input type="text" th:field="*{username}" class="form-control"
 				placeholder="Username" />
