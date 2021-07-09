@@ -8,6 +8,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -24,15 +26,20 @@ public class UserDetailServiceImpl implements UserDetailsService  {
 	}
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-    {   
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {   
     	User curruser = repository.findByUsername(username);
+
+		UserBuilder builder = null;
+    	if (curruser == null) {
+	    	throw new UsernameNotFoundException("User not found.");
+    	}
+    	else {
+	    	builder = org.springframework.security.core.userdetails.User.withUsername(username);
+	    	builder.password(curruser.getPasswordHash());
+	    	builder.roles(curruser.getRole()); 
+    	}
     	
-        UserDetails user = new org.springframework.security.core.userdetails.User(username, curruser.getPasswordHash(), true, 
-        		true, true, true, AuthorityUtils.createAuthorityList(curruser.getRole()));
-        
-        System.out.println("ROLE: " + curruser.getRole());
-        return user;
+	    return builder.build();
     }
-    
+
 }
