@@ -19,5 +19,6 @@ admin/admin (role=ADMIN)
 
 ## Screenshot
 
-![Screenshot](http://juhahinkula.github.com/img/crudboot.png)
+![Screenshot](https://github.com/juhahinkula/juhahinkula.github.io/raw/master/img/bootcrud.png)
+
 
