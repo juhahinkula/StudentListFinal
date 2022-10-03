@@ -1,9 +1,12 @@
 package fi.haagahelia.course;
 
-import org.junit.Test;
-import org.junit.runner.*;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.runner.RunWith;
 
 import java.util.Optional;
 
@@ -34,7 +37,7 @@ public class CrudbootApplicationTests {
     public void setStudentRepository(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }    
-    
+  /*  
     @Test
     public void addUser() {
     	User user = new User("testuser", "testuser", "USER");
@@ -52,5 +55,5 @@ public class CrudbootApplicationTests {
 		Optional<Student> findStudent = studentRepository.findById(student.getId());
 		assertTrue(findStudent.isPresent());
     }
-    
+    */
 }

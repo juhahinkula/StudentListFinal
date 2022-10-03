@@ -2,7 +2,7 @@ package fi.haagahelia.course.domain;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name="users")
 public class User {
 
     @Id
