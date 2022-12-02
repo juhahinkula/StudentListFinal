@@ -8,8 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
 import fi.haagahelia.course.domain.Course;
 import fi.haagahelia.course.domain.CourseRepository;
 import fi.haagahelia.course.domain.Student;

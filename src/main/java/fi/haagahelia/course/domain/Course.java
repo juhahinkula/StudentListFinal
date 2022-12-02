@@ -2,7 +2,7 @@ package fi.haagahelia.course.domain;
 
 import java.util.Set;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Course {

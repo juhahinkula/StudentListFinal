@@ -1,6 +1,6 @@
 package fi.haagahelia.course.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name="users")
 public class User {

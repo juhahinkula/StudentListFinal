@@ -3,7 +3,7 @@ package fi.haagahelia.course.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Student {
