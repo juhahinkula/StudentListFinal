@@ -20,9 +20,9 @@ public class WebSecurityConfig {
 	@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	http
-    		.authorizeRequests().requestMatchers("/css/**", "/signup", "/saveuser").permitAll() // Enable css when logged out
+    		.authorizeHttpRequests().requestMatchers("/css/**", "/signup", "/saveuser").permitAll() // Enable css when logged out
     			.and()
-            .authorizeRequests()
+            .authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
