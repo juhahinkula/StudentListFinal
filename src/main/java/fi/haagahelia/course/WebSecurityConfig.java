@@ -14,31 +14,21 @@ import fi.haagahelia.course.service.UserDetailServiceImpl;
 @Configuration
 @ComponentScan("fi.haagahelia.course")
 public class WebSecurityConfig {
-    @Autowired
-    private UserDetailServiceImpl userDetailsService;
-    
+	@Autowired
+	private UserDetailServiceImpl userDetailsService;
+
 	@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    	http
-    		.authorizeHttpRequests().requestMatchers("/css/**", "/signup", "/saveuser").permitAll() // Enable css when logged out
-    			.and()
-            .authorizeHttpRequests()
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/students", true)
-                .permitAll()
-            	.and()
-            .logout()
-            	.permitAll()
-            	.and();
-    	
-    	return http.build();
-    }
-     
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		return http
+			.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+				.requestMatchers("/css/**", "/signup", "/saveuser").permitAll()
+				.anyRequest().authenticated())
+			.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/students", true).permitAll())
+			.logout(logout -> logout.permitAll()).build();
+	}
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	}
 }
