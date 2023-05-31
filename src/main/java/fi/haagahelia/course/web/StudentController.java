@@ -50,8 +50,10 @@ public class StudentController {
     }	    
     
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(Student student){
-        repository.save(student);
+    public String save(@RequestParam(value="action", required=true) String action, Student student) {
+    	if (action.equalsIgnoreCase("save")) {
+    		repository.save(student);
+    	}
     	return "redirect:/students";
     }
     
