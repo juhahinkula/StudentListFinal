@@ -20,61 +20,63 @@ import fi.haagahelia.course.domain.StudentRepository;
 @Controller
 public class StudentController {
 	@Autowired
-    private StudentRepository repository; 
+	private StudentRepository repository;
 
 	@Autowired
-    private CourseRepository crepository; 		
-	
+	private CourseRepository crepository;
+
 	@RequestMapping("/login")
 	public String login() {
-    	return "login";
-    }	
-	
+		return "login";
+	}
+
 	@RequestMapping("/students")
 	public String index(Model model) {
 		List<Student> students = (List<Student>) repository.findAll();
 		model.addAttribute("students", students);
-    	return "students";
-    }
+		return "students";
+	}
 
-    @RequestMapping(value = "add")
-    public String addStudent(Model model){
-    	model.addAttribute("student", new Student());
-        return "addStudent";
-    }	
+	@RequestMapping(value = "add")
+	public String addStudent(Model model) {
+		model.addAttribute("student", new Student());
+		return "addStudent";
+	}
 
-    @RequestMapping(value = "/edit/{id}")
-    public String editStudent(@PathVariable("id") Long studentId, Model model){
-    	model.addAttribute("student", repository.findById(studentId));
-        return "editStudent";
-    }	    
-    
-    @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(@RequestParam(value="action", required=true) String action, Student student) {
-    	if (action.equalsIgnoreCase("save")) {
-    		repository.save(student);
-    	}
-    	return "redirect:/students";
-    }
-    
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteStudent(@PathVariable("id") Long studentId, Model model) {
-    	repository.deleteById(studentId);
+	@RequestMapping(value = "/edit/{id}")
+	public String editStudent(@PathVariable("id") Long studentId, Model model) {
+		Optional<Student> studentOptional = repository.findById(studentId);
+		Student student = studentOptional.orElse(new Student());
+		model.addAttribute("student", student);
+		return "editStudent";
+	}
+
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	  public String save(@RequestParam(value = "action", required = true) String action, Student student) {
+        if (action.equalsIgnoreCase("save")) {
+            repository.save(student);
+        }
         return "redirect:/students";
-    }    
-    
-    @RequestMapping(value = "addStudentCourse/{id}", method = RequestMethod.GET)
-    public String addCourse(@PathVariable("id") Long studentId, Model model){
-
-    		model.addAttribute("courses", crepository.findAll());
-    		model.addAttribute("student", repository.findById(studentId).get());
-    		return "addStudentCourse";
     }
-    
-    
-    @RequestMapping(value="/student/{id}/courses", method=RequestMethod.GET)
-	public String studentsAddCourse(@RequestParam(value="action", required=true) String action, @PathVariable Long id, @RequestParam Long courseId, Model model) {
-    	Optional<Course> course = crepository.findById(courseId);
+
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deleteStudent(@PathVariable("id") Long studentId, Model model) {
+		repository.deleteById(studentId);
+		return "redirect:/students";
+	}
+
+	@RequestMapping(value = "addStudentCourse/{id}", method = RequestMethod.GET)
+	public String addCourse(@PathVariable("id") Long studentId, Model model) {
+
+		model.addAttribute("courses", crepository.findAll());
+		model.addAttribute("student", repository.findById(studentId).get());
+		return "addStudentCourse";
+	}
+
+	@RequestMapping(value = "/student/{id}/courses", method = RequestMethod.GET)
+	public String studentsAddCourse(@RequestParam(value = "action", required = true) String action,
+			@PathVariable Long id, @RequestParam Long courseId, Model model) {
+		Optional<Course> course = crepository.findById(courseId);
 		Optional<Student> student = repository.findById(id);
 
 		if (student.isPresent() && action.equalsIgnoreCase("save")) {
@@ -89,11 +91,11 @@ public class StudentController {
 
 		model.addAttribute("developers", repository.findAll());
 		return "redirect:/students";
-		
-	}    
-    
-    @RequestMapping(value = "getstudents", method = RequestMethod.GET)
-    public @ResponseBody List<Student> getStudents() {
-            return (List<Student>)repository.findAll();
-    }      
+
+	}
+
+	@RequestMapping(value = "getstudents", method = RequestMethod.GET)
+	public @ResponseBody List<Student> getStudents() {
+		return (List<Student>) repository.findAll();
+	}
 }

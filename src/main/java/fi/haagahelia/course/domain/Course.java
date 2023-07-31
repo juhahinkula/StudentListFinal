@@ -13,7 +13,7 @@ public class Course {
     @Column(name="coursename")
 	private String name; 
      
-    @ManyToMany(mappedBy = "courses")    
+    @ManyToMany(mappedBy = "courses", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Set<Student> students;  
 
     public Course() {
