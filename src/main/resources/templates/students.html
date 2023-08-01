@@ -37,7 +37,7 @@
     		<td>
     			<a th:href="@{/addStudentCourse/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Add Course</a>
     			<a th:href="@{/edit/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Edit</a>
-    			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger btn-sm">Delete</a>
+    			<a sec:authorize="hasRole('ADMIN')" th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger btn-sm">Delete</a>
     		</td>
     	</tr>
     </table>
