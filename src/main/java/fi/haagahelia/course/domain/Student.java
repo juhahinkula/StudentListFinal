@@ -16,6 +16,7 @@ public class Student {
 	private Set<Course> courses = new HashSet<Course>(0);    
     
     public Student() {
+	    this(id,firstname,lastname,department,email);
     }
 
 	public Student(String firstName, String lastName, String department, String email) {
