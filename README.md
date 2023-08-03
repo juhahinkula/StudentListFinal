@@ -8,14 +8,15 @@ Simple CRUD application made with Spring Boot
 - Bootstrap
 
 Usage:<br>
-1) Fork and Clone the project <br>```git clone https://github.com/juhahinkula/StudentListFinal.git```<br>
+1) Fork or Clone the project <br>```git clone https://github.com/juhahinkula/StudentListFinal.git```<br>
 2) run the following command in a terminal window (in the complete) directory:
 ```./mvnw spring-boot:run```
 3) Navigate to localhost:8080<br>
 
-With Eclipse you can also run the project in the following way:
-3) Eclipse: File -> Import -> Maven -> Existing Maven Projects<br>
-4) Run<br>
+With Eclipse you can also run the project in the following way:<br>
+1) Eclipse: File -> Import -> Maven -> Existing Maven Projects<br>
+2) Run<br>
+3) Navigate to localhost:8080<br>
 
 Application contains two demo users: <br>
 user/user (role=USER) <br>
