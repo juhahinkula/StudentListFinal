@@ -13,7 +13,7 @@ Usage:<br>
 ```./mvnw spring-boot:run```<br>
 3) Navigate to localhost:8080<br>
 
-With Eclipse you can also run the project in the following way:<br>
+If using Eclipse, you can also run the project in the following way:<br>
 1) Eclipse: File -> Import -> Maven -> Existing Maven Projects<br>
 2) Run<br>
 3) Navigate to localhost:8080<br>
