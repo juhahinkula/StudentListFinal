@@ -8,7 +8,7 @@ Simple CRUD application made with Spring Boot
 - Bootstrap
 
 Usage:<br>
-1) Fork or Clone the project <br>```git clone https://github.com/juhahinkula/StudentListFinal.git```<br>
+1) Clone the project <br>```git clone https://github.com/juhahinkula/StudentListFinal.git```<br>
 2) run the following command in a terminal window (in the complete) directory:<br>
 ```./mvnw spring-boot:run```<br>
 3) Navigate to localhost:8080<br>
